@@ -6,6 +6,7 @@ import 'package:progress_dialog/progress_dialog.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:samplemap/constant/constant_class.dart';
 import 'package:samplemap/constant/constant_title.dart';
+import 'package:samplemap/pages/sign_up.dart';
 import 'dart:core';
 
 import 'package:samplemap/utils/utils.dart';
@@ -43,9 +44,9 @@ class _SignInPageState extends State<SignInPage> {
         result == ConnectivityResult.wifi) {
       //pr.show();
       //getphoneNumber();
-      // Navigator.of(context).push(
-      //   MaterialPageRoute(builder: (contextTrans) => CollegeConnectPrincipalProfile()),
-      // );
+//       Navigator.of(context).push(
+//         MaterialPageRoute(builder: (contextTrans) => SignUpPage()),
+//       );
     }
   }
 
@@ -124,7 +125,7 @@ class _SignInPageState extends State<SignInPage> {
                       child: TextFormField(
                         autovalidate: _autovalidate,
                         validator: (value) {
-                          return value.isEmpty || value.length < 10
+                          return value.isEmpty
                               ? "Enter Valid username"
                               : null;
                         },
@@ -133,10 +134,7 @@ class _SignInPageState extends State<SignInPage> {
                         textInputAction: TextInputAction.done,
                         obscureText: false,
                         controller: usernamecontroller,
-                        inputFormatters: [
-                          LengthLimitingTextInputFormatter(10),
-                          WhitelistingTextInputFormatter(RegExp("[0-9]")),
-                        ],
+
                         decoration: inputImageDecoration(
                           hintText: S.hint_input_mobile,
                           image: R.image.icon_call,
@@ -174,10 +172,6 @@ class _SignInPageState extends State<SignInPage> {
                         textInputAction: TextInputAction.done,
                         obscureText: false,
                         controller: passwordcontroller,
-                        inputFormatters: [
-                          LengthLimitingTextInputFormatter(10),
-                          WhitelistingTextInputFormatter(RegExp("[0-9]")),
-                        ],
                         decoration: inputImageDecoration(
                           hintText: S.hint_input_pswd,
                           image: R.image.icon_call,
@@ -296,6 +290,9 @@ class _SignInPageState extends State<SignInPage> {
     if (_scaffoldKey.currentState.validate()) {
       _checkInternetConnectivity();
       _scaffoldKey.currentState.save();
+      Navigator.of(context).push(
+        MaterialPageRoute(builder: (contextTrans) => SignUpPage()),
+      );
     } else {
 //    If all data are not valid then start auto validation.
       setState(() {

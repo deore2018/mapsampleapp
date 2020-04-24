@@ -123,30 +123,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   SizedBox(
                     height: 10.0,
                   ),
-                  Container(
-                    child: TextFormField(
-                      controller: lastNamecontroller,
-                      autovalidate: _autoValidate,
-                      textCapitalization: TextCapitalization.words,
-                      style: inputTextStyle(),
-                      validator: (String value) {
-                        return value.isEmpty ? 'Could Not be Empty' : null;
-                      },
-                      textInputAction: TextInputAction.next,
-                      obscureText: false,
-                      decoration: inputImageDecoration(
-                        hintText: S.hint_input_lastName,
-                        image: R.image.ic_name,
-                      ),
-                      inputFormatters: [
-                        WhitelistingTextInputFormatter(RegExp("[A-Za-z]")),
-                      ],
-                    ),
-                    //margin: EdgeInsets.only(bottom: 20),
-                  ),
-                  SizedBox(
-                    height: 10.0,
-                  ),
+
                   Container(
                     child: TextFormField(
                       controller: emailcontroller,
@@ -177,6 +154,31 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                   Container(
                     child: TextFormField(
+                      controller: lastNamecontroller,
+                      autovalidate: _autoValidate,
+                      textCapitalization: TextCapitalization.words,
+                      style: inputTextStyle(),
+                      validator: (String value) {
+                        return value.isEmpty ? 'Could Not be Empty' : null;
+                      },
+                      textInputAction: TextInputAction.next,
+                      obscureText: false,
+                      decoration: inputImageDecoration(
+                        hintText: S.hint_input_org_id,
+                        image: R.image.ic_name,
+                      ),
+                      inputFormatters: [
+                        WhitelistingTextInputFormatter(RegExp("[A-Za-z]")),
+                      ],
+                    ),
+                    //margin: EdgeInsets.only(bottom: 20),
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+
+                  Container(
+                    child: TextFormField(
                       controller: mobilecontroller,
                       autovalidate: _autoValidate,
                       style: inputTextStyle(),
@@ -189,7 +191,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       keyboardType: TextInputType.number,
                       obscureText: false,
                       decoration: inputImageDecoration(
-                        hintText: S.hint_input_mobile,
+                        hintText: S.hint_input_Mobile,
                         image: R.image.icon_call,
                       ),
                       inputFormatters: [
@@ -208,7 +210,9 @@ class _SignUpPageState extends State<SignUpPage> {
                       autovalidate: _autoValidate,
                       textCapitalization: TextCapitalization.words,
                       style: inputTextStyle(),
-                      validator: (String value) {},
+                      validator: (String value) {
+                        return value.isEmpty ? 'Could Not be Empty' : null;
+                      },
 //                      onChanged: (value) {
 //                        return value.length < 8
 //                            ? " Enter Valid Referral Code"
@@ -217,36 +221,72 @@ class _SignUpPageState extends State<SignUpPage> {
                       textInputAction: TextInputAction.done,
                       keyboardType: TextInputType.text,
                       decoration: inputImageDecoration(
-                        hintText: "Referral Code (Optional)",
+                        hintText: S.hint_input_pswd,
                         image: R.image.ic_code,
                       ),
                       inputFormatters: [
-                        LengthLimitingTextInputFormatter(8),
-                        // WhitelistingTextInputFormatter(RegExp("[0-9]")),
+
+
                       ],
                     ),
                     // margin: EdgeInsets.only(bottom: 20),
                   ),
-
+                  SizedBox(
+                    height: 10.0,
+                  ),
                   Container(
-                    child: button(
-                        text: S.btn_sign_up.toUpperCase(),
-                        onPressed: () {
-                          _validateInputs();
-                          // if (validateForm()) {
-                          //   pr.show();
-                          //   signupApi();
+                    child: TextFormField(
+                      controller: referralcodecontroller,
+                      autovalidate: _autoValidate,
+                      textCapitalization: TextCapitalization.words,
+                      style: inputTextStyle(),
+                      validator: (String value) {
+                        return value.isEmpty ? 'Could Not be Empty' : null;
+                      },
+//
+                      textInputAction: TextInputAction.done,
+                      keyboardType: TextInputType.text,
+                      decoration: inputImageDecoration(
+                        hintText: S.hint_input_conf_pswd,
+                        image: R.image.ic_code,
+                      ),
+                      inputFormatters: [
 
-                          //   // Navigator.of(context).push(MaterialPageRoute(
-                          //   //     builder: (contextTrans) => DashBoard_Page()));
-                          // }
-                          // Navigator.of(context).push(
-                          //   MaterialPageRoute(
-                          //       builder: (contextTrans) => SampleOtp()),
-                          //   // ModalRoute.withName(RouterName.MAIN),
-                          // );
-                        }),
-                    margin: EdgeInsets.only(top: 20, bottom: 20),
+
+                      ],
+                    ),
+                    // margin: EdgeInsets.only(bottom: 20),
+                  ),
+SizedBox(height: 30,),
+                  Container(
+                    height: 50.0,
+                    child: RaisedButton(
+                      onPressed: () {
+                        _validateInputs();
+                      },
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                      padding: EdgeInsets.all(0.0),
+                      child: Ink(
+                        decoration: BoxDecoration(
+                            gradient: LinearGradient(colors: [Color(0xff374ABE), Color(0xff1BDCDE)],
+                              begin: Alignment.centerLeft,
+                              end: Alignment.centerRight,
+                            ),
+                            borderRadius: BorderRadius.circular(30.0)
+                        ),
+                        child: Container(
+                          constraints: BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
+                          alignment: Alignment.center,
+                          child: Text(
+                            "SIGN UP",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: Colors.white
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                   // button(
                   //     text: S.of(context).btn_sign_in_facebook.toUpperCase(),
