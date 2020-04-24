@@ -37,6 +37,7 @@ class MapSampleState extends State<MapSample> {
     // TODO: implement initState
     super.initState();
     details = ["Satara,Sangli,Nashik,Pune"];
+
   }
 
   @override
@@ -48,9 +49,9 @@ class MapSampleState extends State<MapSample> {
             myLocationEnabled: true,
             mapType: MapType.normal,
             initialCameraPosition: _kGooglePlex,
-            onMapCreated: (GoogleMapController controller) {
-              mapController = controller;
-            },
+            onMapCreated: _onMapCreated,
+
+
           ),
         ],
       ),
@@ -63,6 +64,12 @@ class MapSampleState extends State<MapSample> {
     );
   }
 
+  void _onMapCreated(GoogleMapController controller) {
+    setState(() {
+      mapController = controller;
+
+    });
+  }
   void _newTaskModalBottomSheet(context) {
     showModalBottomSheet(
         isScrollControlled: true,
@@ -73,7 +80,7 @@ class MapSampleState extends State<MapSample> {
               children: <Widget>[
                 new ListTile(
                     leading: new Icon(Icons.location_city),
-                    title: new Text('Nashik'),
+                    title: new Text('Aurus'),
                     onTap: () {
                       Navigator.pop(context);
                       mapController.animateCamera(
@@ -81,7 +88,7 @@ class MapSampleState extends State<MapSample> {
                           CameraPosition(
                               bearing: 192.8334901395799,
                               tilt: 59.440717697143555,
-                              target: LatLng(19.9909493, 73.7334404),
+                              target: LatLng(18.6468932,73.764684),
                               zoom: 10.0),
                         ),
                       );
@@ -100,6 +107,7 @@ class MapSampleState extends State<MapSample> {
                             zoom: 10.0),
                       ),
                     );
+
                   },
                 ),
                 new ListTile(
@@ -158,5 +166,6 @@ class MapSampleState extends State<MapSample> {
 
   _goToTheLake() async {
     mapController.animateCamera(CameraUpdate.newCameraPosition(_kLake));
+
   }
 }

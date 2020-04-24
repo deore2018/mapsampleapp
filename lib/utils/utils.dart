@@ -1,6 +1,6 @@
-import 'package:codetentaclessample/constant/constant_class.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_widgets/gradient_widgets.dart';
+import 'package:samplemap/constant/constant_class.dart';
 
 TextStyle home_item_textstyle() => TextStyle(
     fontSize: 16,
