@@ -30,6 +30,8 @@ dependencies:
   progress_dialog: ^1.2.2
   rflutter_alert: ^1.0.3
   gradient_widgets: any
+  provider: ^2.0.1
+  fluttertoast: ^4.0.0
 
 dev_dependencies:
   flutter_test:

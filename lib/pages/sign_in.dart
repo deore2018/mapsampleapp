@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'dart:collection';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:progress_dialog/progress_dialog.dart';
+import 'package:provider/provider.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:samplemap/constant/constant_class.dart';
 import 'package:samplemap/constant/constant_title.dart';
+import 'package:samplemap/network_connectivity/connectivity_status.dart';
 import 'package:samplemap/pages/sign_up.dart';
 import 'dart:core';
 
@@ -37,17 +40,19 @@ class _SignInPageState extends State<SignInPage> {
   }
 
   _checkInternetConnectivity() async {
-    var result = await Connectivity().checkConnectivity();
-    if (result == ConnectivityResult.none) {
-      _showDialog('No internet', "You're not connected to a network");
-    } else if (result == ConnectivityResult.mobile ||
-        result == ConnectivityResult.wifi) {
-      //pr.show();
-      //getphoneNumber();
-//       Navigator.of(context).push(
-//         MaterialPageRoute(builder: (contextTrans) => SignUpPage()),
-//       );
-    }
+//    var result = await Connectivity().checkConnectivity();
+//    if (result == ConnectivityResult.none) {
+//      _showDialog('No internet', "You're not connected to a network");
+//    } else if (result == ConnectivityResult.mobile ||
+//        result == ConnectivityResult.wifi) {
+//      //pr.show();
+//      //getphoneNumber();
+////       Navigator.of(context).push(
+////         MaterialPageRoute(builder: (contextTrans) => SignUpPage()),
+////       );
+//    }
+
+
   }
 
   _showDialog(title, text) {
@@ -81,6 +86,8 @@ class _SignInPageState extends State<SignInPage> {
     pr = new ProgressDialog(context,
         type: ProgressDialogType.Normal, isDismissible: true);
     pr.style(message: 'processing');
+
+    var connectionStatus = Provider.of<ConnectivityStatus>(context);
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -209,7 +216,13 @@ class _SignInPageState extends State<SignInPage> {
                     height: 50.0,
                     child: RaisedButton(
                       onPressed: () {
-                        validateForm();
+                        connectionStatus == ConnectivityStatus.Offline ? Fluttertoast.showToast(
+                            msg: "Please Connect To Network",
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.CENTER,
+                            backgroundColor: Colors.redAccent,
+                            textColor: Colors.white,
+                            fontSize: 16.0) : validateForm();
                       },
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
                       padding: EdgeInsets.all(0.0),

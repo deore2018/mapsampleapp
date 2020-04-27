@@ -31,12 +31,15 @@ class MapSampleState extends State<MapSample> {
       tilt: 59.440717697143555,
       zoom: 19.151926040649414);
   List<String> details = [];
+  List <CameraPosition> latlonglist ;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     details = ["Satara,Sangli,Nashik,Pune"];
+
+    latlonglist = List<CameraPosition>();
 
   }
 
